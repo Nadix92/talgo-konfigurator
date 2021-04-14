@@ -1,0 +1,210 @@
+:root {
+  --main-color: rgb(206, 78, 78);
+}
+
+body {
+  font-family: Helvetica;
+  color: #222222b6;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+header {
+  padding: 20px 40px;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--main-color);
+}
+
+header i {
+  font-size: 32px;
+  cursor: pointer;
+}
+
+footer {
+  padding: 6rem;
+  background-color: var(--main-color);
+  color: #eee;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+input,
+select {
+  padding: 12px 20px;
+  margin: 8px 0;
+}
+
+select,
+option {
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+span {
+  font-size: 14px;
+}
+
+.konfig-container {
+  min-height: 90vh;
+  display: flex;
+}
+
+.sd-viewer {
+  z-index: 9999;
+  width: 65%;
+  max-height: 90vh;
+}
+
+.parameters {
+  flex-grow: 1;
+  padding: 40px;
+  border-left: 1px solid var(--main-color);
+}
+
+.parameters h2 {
+  margin-bottom: 60px;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  margin: 25px 0;
+}
+
+.download-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn {
+  cursor: pointer;
+  padding: 16px;
+  border: none;
+  background-color: var(--main-color);
+  border-radius: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  outline: none;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn__small {
+  font-size: 16px;
+  padding: 12px;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+.hidden {
+  display: none;
+}
+
+@media screen and (max-width: 1000px) {
+  .konfig-container {
+    flex-direction: column;
+    width: 100vw;
+    max-width: 100%;
+  }
+
+  .sd-viewer {
+    height: 70vh;
+    width: 100%;
+  }
+
+  .parameters {
+    min-height: 80vh;
+    border-left: none;
+    border-top: 1px solid var(--main-color);
+    padding: 40px 120px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .parameters {
+    padding: 40px 20px;
+  }
+}
+
+/* /////////////////////////////////////////
+CHECK BOX
+*/
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: '';
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: var(--main-color);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px var(--main-color);
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
