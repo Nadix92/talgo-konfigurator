@@ -21,6 +21,23 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <div id="overlay"></div>
+
+    <div id="modal-popup">
+      <div hidden id="spinner"></div>
+      <div id="modal-content">
+        <h4>Export "Name"</h4>
+        <p>"File" is availebale for download</p>
+        <p>Download size: 12321 bytes</p>
+        <p>File format: pdf</p>
+      </div>
+
+      <div class="download-container">
+        <button hidden class="btn btn__small" id="cancel">Cancel</button>
+        <button hidden class="btn btn__small" id="modal-download">Download</button>
+      </div>
+    </div>
+
     <header>
       <h1><a href="/">Talgø Konfigurator</a></h1>
       <i class="fas fa-bars"></i>
@@ -63,8 +80,6 @@
             <span class="slider round"></span>
           </label>
         </div>
-
-        <div hidden id="spinner"></div>
 
         <!-- Input end  -->
       </div>

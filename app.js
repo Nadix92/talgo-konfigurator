@@ -115,8 +115,30 @@ api.scene.addEventListener(api.scene.EVENTTYPE.VISIBILITY_ON, function () {
       updateParameters(pName.value, pVal.value);
     });
 
+    const on = () => {
+      document.getElementById('overlay').style.display = 'block';
+      document.getElementById('modal-popup').style.display = 'block';
+    };
+
+    const off = () => {
+      document.getElementById('overlay').style.display = 'none';
+      document.getElementById('modal-popup').style.display = 'none';
+    };
+
+    const cancelBtn = document.getElementById('cancel');
+    const modalDownload = document.getElementById('modal-download');
+    const modalPopup = document.getElementById('modal-content');
+
+    cancelBtn.addEventListener('click', off);
+
     const directExport = name => {
+      modalPopup.innerHTML = '';
+      modalPopup.innerHTML = `<p>Processing, please wait..</p>`;
       spinner.removeAttribute('hidden');
+      modalDownload.setAttribute('hidden', '');
+      cancelBtn.setAttribute('hidden', '');
+      on();
+
       api.exports
         .requestAsync({ name })
         .catch(function (err) {
@@ -124,16 +146,29 @@ api.scene.addEventListener(api.scene.EVENTTYPE.VISIBILITY_ON, function () {
         })
         .then(function (response) {
           spinner.setAttribute('hidden', '');
+
           if (response.data.msg) alert(response.data.msg);
 
           console.log(response.data);
 
           if (response.data.content.length !== 0) {
-            console.log('File format: ', response.data.content[0].format);
-            console.log('File size: ', response.data.content[0].size);
-            console.log('Download link: ', response.data.content[0].href);
+            output = `
+            <h3>Export "${name}"</h3>
+            <p>${response.data.filename} is availebale for download</p>
+            <p>Download size: ${response.data.content[0].size} bytes</p>
+            <p>File format: ${response.data.content[0].format}</p>
+            
+            `;
 
-            window.location.href = response.data.content[0].href;
+            modalPopup.innerHTML = '';
+            modalPopup.insertAdjacentHTML('afterbegin', output);
+
+            modalDownload.removeAttribute('hidden');
+            cancelBtn.removeAttribute('hidden');
+            modalDownload.addEventListener('click', () => {
+              window.location.href = response.data.content[0].href;
+              off();
+            });
           }
         });
     };
