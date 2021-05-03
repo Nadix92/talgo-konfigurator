@@ -4,14 +4,20 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>Talgø Konfigurator</title>
 
+    <!-- Font Awesome -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
       integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
       crossorigin="anonymous"
     />
+
+    <!-- Shapediver Styles -->
+    <!-- <link rel="stylesheet" type="text/css" href="https://viewer.shapediver.com/v2/2.22.0/sdv.css" />  -->
+
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -20,80 +26,47 @@
       <i class="fas fa-bars"></i>
     </header>
 
-    <main>
-      <div class="konfig-container">
-        <div class="sd-viewer" id="sdv-container"></div>
-        <div class="parameters">
-          <h2>Parameters</h2>
-
-          <!-- <div class="form-container">
-            <label for="name">Param Name:</label>
-            <input type="text" id="name" />
-          </div> -->
-
-          <div class="form-container">
-            <label for="name">Param Name:</label>
-
-            <select id="name">
-              <option value="Length">Length</option>
-              <option value="Height">Height</option>
-              <option value="Thickness">Thickness</option>
-              <option value="Tilt">Tilt</option>
-              <option value="Spile Lengde">Spile Lengde</option>
-              <option value="Spile Tykkelse">Spile Tykkelse</option>
-              <option value="Spile utstikker lengde">Spile utstikker lengde</option>
-              <option value="Spile utstikker tykkelse">Spile utstikker tykkelse</option>
-              <option value="Vinkel (grader topp)">Vinkel (grader topp)</option>
-            </select>
-          </div>
-
-          <div class="form-container">
-            <label for="value">Param Value:</label>
-            <input type="number" id="value" />
-            <span id="min"></span>
-            <span id="max"></span>
-            <span id="current"></span>
-          </div>
-
-          <div class="form-container" id="apply-btn">
-            <button class="btn">Apply</button>
-          </div>
-
-          <div class="form-container">
-            <h4>Vis Mål</h4>
-            <label class="switch">
-              <input type="checkbox" id="vis-mål" />
-              <span class="slider round"></span>
-            </label>
-          </div>
-
-          <div class="download-container">
-            <div class="form-container">
-              <h4>Vis 2D tegning</h4>
-              <label class="switch">
-                <input type="checkbox" id="vis-tegning" />
-                <span class="slider round"></span>
-              </label>
-            </div>
-
-            <div class="form-container hidden" id="view-container">
-              <label for="view-name">View:</label>
-
-              <select id="view-name">
-                <option value="0">Perspective</option>
-                <option value="1">Top</option>
-                <option value="2">Front</option>
-                <option value="3">Right</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="form-container hidden" id="download-btn">
-            <button class="btn btn__small">Last ned 2D Tegning</button>
-          </div>
-
-          <!-- Input end  -->
+    <main class="konfig-container">
+      <div class="sd-viewer" id="sdv-container"></div>
+      <div class="parameters">
+        <h2>Parameters</h2>
+        <div class="form-container">
+          <label for="name">Param Name:</label>
+          <select id="name">
+            <option value="Length">Length</option>
+            <option value="Height">Height</option>
+            <option value="Tilt">Tilt</option>
+          </select>
         </div>
+
+        <div class="form-container">
+          <label for="value">Param Value:</label>
+          <input type="number" id="value" />
+          <span id="min"></span>
+          <span id="max"></span>
+          <span id="current"></span>
+        </div>
+
+        <div class="form-container" id="apply-btn">
+          <button class="btn">Apply</button>
+        </div>
+
+        <div class="download-container">
+          <button class="btn btn__small" id="download-3d-model">Last ned 3D Model</button>
+          <button class="btn btn__small" id="download-pdf">Last ned PDF</button>
+        </div>
+
+        <div class="form-container hidden">
+          <h4>Vis PDF tegning</h4>
+          <label class="switch">
+            <input type="checkbox" id="vis-tegning" />
+            <span class="slider round"></span>
+          </label>
+        </div>
+
+        <div hidden id="spinner"></div>
+
+        <!-- Input end  -->
       </div>
     </main>
 
