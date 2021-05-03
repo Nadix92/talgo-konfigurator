@@ -1,11 +1,8 @@
 const _container = document.getElementById('sdv-container');
-// const ticket =
-//   '26dc1972fa619ed5b5d9cc918a4bf2e5ddd323757d9cd4da623cc4fef6633311b1bf1bf3f2d69c2925c614bc6727b36329933e55254449d2bd07652909161d00822f888f82383f3b293325b990822c69f2eacdff6c5ad8f2f46ea911cd95d61bb3865a950f425e109bb50e9795677a22b4ca10e362d8-18541cd39125a5caf165af96da6d6f40';
-// https://app.shapediver.com/m/talgoe-v1-18
 
 const ticket =
-  'e8520a550bc7683c06b52617d892c76fc65a5abc7c8d0f4ff83a82c51581cded87de40568ccac93e51a396f0a8d1171c2de914c10c3f436787d0ad4eb927ae6cfd0b0ce69c31920380816ff2844feddd6397ae4026397b9a633381d27287404e9d34dfb8ae96000c3cae7fdb9108f39ff189a47681fb-355b54a23ebcad7f5c20ece057cf266d';
-// https://app.shapediver.com/m/talgoe-v1-17
+  'bcbc50ffe486eb7cea6606bff46d458787e305c00ef7ce53c535174582d630fa89a4de27a4e4533075387c95b1c6e620e9c7ed0497608662d8156c3cc8975bc8735833c63167575d06180a78a9a2bb66169d5d53d7c7a3e71ac62fc0bff4e3b6e70633435b0b1dcc83608f923f5288d475f0cad373cf-f026aa372bb346502fd3fa914764bb9a';
+// https://app.shapediver.com/m/talgoe-v1-19
 
 const _viewerSettings = {
   container: _container,
@@ -69,12 +66,12 @@ api.scene.addEventListener(api.scene.EVENTTYPE.VISIBILITY_ON, function () {
       try {
         // Toggle off tegning before update any parameter
         // togglePDF(false);
-        visTegning.checked = false;
-        showTegning();
-        // await api.parameters.updateAsync({
-        //   name: 'Vis 2D tegning',
-        //   value: false,
-        // });
+        // visTegning.checked = false;
+        // showTegning();
+        await api.parameters.updateAsync({
+          name: 'FrontPDF',
+          value: false,
+        });
 
         const response = await api.parameters.updateAsync({
           name,
@@ -143,9 +140,15 @@ api.scene.addEventListener(api.scene.EVENTTYPE.VISIBILITY_ON, function () {
 
     downloadPDF.addEventListener('click', async () => {
       try {
-        visTegning.checked = true;
-        showTegning();
+        // visTegning.checked = true;
+        // showTegning();
         // togglePDF(true);
+
+        await api.parameters.updateAsync({
+          name: 'FrontPDF',
+          value: true,
+        });
+
         directExport('DownloadPDF');
       } catch (err) {
         console.log(err);
@@ -156,18 +159,18 @@ api.scene.addEventListener(api.scene.EVENTTYPE.VISIBILITY_ON, function () {
     // downloadPDF.addEventListener('click', directExport.bind(null, 'DownloadPDF'));
 
     // Toggle tegning
-    const showTegning = async () => {
-      try {
-        // View toggle (true or false)
-        await api.parameters.updateAsync({
-          name: 'Vis 2D tegning',
-          value: visTegning.checked,
-        });
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    visTegning.addEventListener('change', showTegning);
+    // const showTegning = async () => {
+    //   try {
+    //     // View toggle (true or false)
+    //     await api.parameters.updateAsync({
+    //       name: 'Vis 2D tegning',
+    //       value: visTegning.checked,
+    //     });
+    //   } catch (err) {
+    //     console.log(err);
+    //   }
+    // };
+    // visTegning.addEventListener('change', showTegning);
 
     // value will be ture or false
     // const togglePDF = async value => {
